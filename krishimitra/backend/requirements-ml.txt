@@ -1,0 +1,6 @@
+-r requirements.txt
+ultralytics>=8.3.55
+faiss-cpu>=1.12.0
+sentence-transformers>=3.3.1
+scikit-learn>=1.6.0
+xgboost>=2.1.3
