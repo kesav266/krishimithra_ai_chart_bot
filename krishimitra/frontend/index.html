@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#174f2a">
+  <title>KrishiMitra AI</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow" data-i18n="tagline">Smart Crop Doctor</p>
+        <h1>KrishiMitra AI</h1>
+      </div>
+      <button class="icon-btn" id="locateBtn" title="Detect location" aria-label="Detect location">LOC</button>
+    </header>
+
+    <main>
+      <section class="panel active" data-panel="dashboard">
+        <div class="hero">
+          <div>
+            <p data-i18n="hello">Namaste farmer</p>
+            <h2 data-i18n="heroTitle">Scan, understand, and act faster.</h2>
+          </div>
+          <div class="score">
+            <span id="greenScore">87</span>
+            <small data-i18n="greenScore">Green Score</small>
+          </div>
+        </div>
+        <div class="grid two">
+          <article class="metric"><span id="weatherTemp">--</span><small data-i18n="temperature">Temperature</small></article>
+          <article class="metric"><span id="weatherHumidity">--</span><small data-i18n="humidity">Humidity</small></article>
+          <article class="metric"><span id="waterSaved">12.8k L</span><small data-i18n="waterSaved">Water Saved</small></article>
+          <article class="metric"><span id="chemicalReduction">34%</span><small data-i18n="chemicalReduction">Chemical Reduction</small></article>
+        </div>
+        <div class="notice" id="dashboardAlert">AI recommendations are advisory only. Consult an agricultural officer for severe field damage.</div>
+      </section>
+
+      <section class="panel" data-panel="crop">
+        <h2 data-i18n="cropScan">Crop Disease Scan</h2>
+        <p class="helper">Take a clear photo of the affected leaf in daylight. Large photos are optimized before upload.</p>
+        <form id="diseaseForm" class="stack">
+          <input name="crop_type" class="input" placeholder="Crop type">
+          <input name="location" class="input location-field" placeholder="Village / District">
+          <input name="image" class="input" type="file" accept="image/png,image/jpeg" capture="environment" required>
+          <button class="primary" type="submit" data-i18n="analyzeDisease">Analyze Disease</button>
+        </form>
+        <div class="result" id="diseaseResult"></div>
+      </section>
+
+      <section class="panel" data-panel="pest">
+        <h2 data-i18n="pestScan">Pest Scan</h2>
+        <p class="helper">Photograph the underside of leaves or the damaged area for better pest triage.</p>
+        <form id="pestForm" class="stack">
+          <input name="crop_type" class="input" placeholder="Crop type">
+          <input name="location" class="input location-field" placeholder="Village / District">
+          <input name="image" class="input" type="file" accept="image/png,image/jpeg" capture="environment" required>
+          <button class="primary" type="submit" data-i18n="analyzePest">Analyze Pest</button>
+        </form>
+        <div class="result" id="pestResult"></div>
+      </section>
+
+      <section class="panel" data-panel="weather">
+        <h2 data-i18n="weather">Weather Advisory</h2>
+        <p class="helper">Use current location or enter your district for spraying and irrigation guidance.</p>
+        <div class="stack">
+          <input id="cityInput" class="input location-field" placeholder="City or district">
+          <button class="primary" id="weatherBtn" data-i18n="getWeather">Get Weather</button>
+        </div>
+        <div class="result" id="weatherResult"></div>
+      </section>
+
+      <section class="panel" data-panel="chat">
+        <h2 data-i18n="chat">AI Farming Chat</h2>
+        <div class="quick-row" aria-label="Quick questions">
+          <button type="button" class="prompt-chip" data-prompt="My crop leaves have spots. What should I check first?">Leaf spots</button>
+          <button type="button" class="prompt-chip" data-prompt="How should I plan fertilizer after a soil test?">Fertilizer</button>
+          <button type="button" class="prompt-chip" data-prompt="When is it safe to spray pesticide based on weather?">Spraying</button>
+        </div>
+        <div class="chatbox" id="chatMessages"></div>
+        <form id="chatForm" class="chatbar">
+          <button type="button" class="icon-btn" id="voiceBtn" title="Speak" aria-label="Speak">MIC</button>
+          <input id="chatInput" class="input" placeholder="Ask about disease, fertilizer, pests, irrigation">
+          <button class="primary compact" type="submit" data-i18n="send">Send</button>
+        </form>
+        <button type="button" class="text-btn" id="clearChatBtn">Clear chat</button>
+      </section>
+
+      <section class="panel" data-panel="soil">
+        <h2 data-i18n="soil">Soil Health</h2>
+        <form id="soilForm" class="grid two">
+          <input name="n" class="input" type="number" step="0.1" placeholder="N">
+          <input name="p" class="input" type="number" step="0.1" placeholder="P">
+          <input name="k" class="input" type="number" step="0.1" placeholder="K">
+          <input name="ph" class="input" type="number" step="0.1" placeholder="pH">
+          <input name="report" class="input wide" type="file" accept="application/pdf">
+          <button class="primary wide" type="submit" data-i18n="analyzeSoil">Analyze Soil</button>
+        </form>
+        <div class="result" id="soilResult"></div>
+      </section>
+
+      <section class="panel" data-panel="yield">
+        <h2 data-i18n="yield">Yield Prediction</h2>
+        <form id="yieldForm" class="stack">
+          <input name="crop_type" class="input" placeholder="Crop type" required>
+          <input name="area_acres" class="input" type="number" step="0.1" placeholder="Area in acres" required>
+          <input name="rainfall_mm" class="input" type="number" step="1" placeholder="Rainfall mm" required>
+          <input name="fertilizer_kg" class="input" type="number" step="0.1" placeholder="Fertilizer kg" required>
+          <button class="primary" type="submit" data-i18n="predictYield">Predict Yield</button>
+        </form>
+        <div class="result" id="yieldResult"></div>
+      </section>
+
+      <section class="panel" data-panel="sustainability">
+        <h2 data-i18n="sustainability">Sustainability</h2>
+        <div class="result" id="sustainabilityResult"></div>
+      </section>
+
+      <section class="panel" data-panel="settings">
+        <h2 data-i18n="settings">Settings</h2>
+        <label class="label" for="languageSelect" data-i18n="language">Language</label>
+        <select id="languageSelect" class="input">
+          <option>English</option>
+          <option>Hindi</option>
+          <option>Telugu</option>
+        </select>
+        <label class="label" for="apiBase">Backend API URL</label>
+        <input id="apiBase" class="input" value="http://localhost:8000">
+        <button class="primary" id="saveSettings" data-i18n="save">Save</button>
+      </section>
+    </main>
+
+    <nav class="tabs" aria-label="Primary">
+      <button class="tab active" data-tab="dashboard">D<span data-i18n="dash">Dash</span></button>
+      <button class="tab" data-tab="crop">C<span data-i18n="crop">Crop</span></button>
+      <button class="tab" data-tab="pest">P<span data-i18n="pest">Pest</span></button>
+      <button class="tab" data-tab="weather">W<span data-i18n="weatherShort">Weather</span></button>
+      <button class="tab" data-tab="chat">A<span data-i18n="chatShort">Chat</span></button>
+      <button class="tab" data-tab="soil">S<span data-i18n="soilShort">Soil</span></button>
+      <button class="tab" data-tab="yield">Y<span data-i18n="yieldShort">Yield</span></button>
+      <button class="tab" data-tab="sustainability">G<span data-i18n="green">Green</span></button>
+      <button class="tab" data-tab="settings">SET<span data-i18n="settingsShort">Set</span></button>
+    </nav>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

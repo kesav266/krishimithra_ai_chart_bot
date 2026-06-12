@@ -1,0 +1,16 @@
+{
+  "name": "KrishiMitra AI",
+  "short_name": "KrishiMitra",
+  "description": "Smart Crop Doctor and Sustainable Farming Assistant",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fbfffc",
+  "theme_color": "#174f2a",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192'%3E%3Crect width='192' height='192' rx='32' fill='%23174f2a'/%3E%3Cpath d='M96 150c-24-26-42-52-42-82 25 0 44 12 42 42 8-31 27-48 58-51-1 43-22 76-58 91Z' fill='%23eaf7ec'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}
